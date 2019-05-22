@@ -9,15 +9,42 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let coche of coches | async">
-     <ion-label>{{coche.marca}}</ion-label>
-     <ion-label>{{coche.modelo}}</ion-label>
-     <ion-label>{{coche.color}}</ion-label>
-     <ion-label>{{coche.anio}}</ion-label>
+<ion-content padding>
 
+  <ion-list>
+
+    <ion-item color="success">
+      <ion-label>Marca</ion-label>
+      <ion-label>Modelo</ion-label>
+      <ion-label>Color</ion-label>
+      <ion-label>Año</ion-label>
     </ion-item>
+
+    <ion-item-sliding #slidingItem *ngFor="let coche of coches | async">
+      <ion-item>
+        <ion-label>{{coche.marca}}</ion-label>
+        <ion-label>{{coche.modelo}}</ion-label>
+        <ion-label>{{coche.color}}</ion-label>
+        <ion-label>{{coche.anio}}</ion-label>
+      </ion-item>
+     
+
+     <ion-item-options side="end">
+
+       <ion-item-option color="tertiary">
+          <ion-icon name="eye" (click)="verCoche(slidingItem, coche)"></ion-icon>
+       </ion-item-option>
+
+       <ion-item-option color="secondary">
+          <ion-icon name="create" (click)="editarCoche(slidingItem, coche)"></ion-icon>
+       </ion-item-option>
+
+       <ion-item-option color="danger">
+         <ion-icon name="trash" (click)="borrarCoche(slidingItem, coche)"></ion-icon>
+       </ion-item-option>
+     </ion-item-options>
+
+    </ion-item-sliding>
   </ion-list>
 
 </ion-content>

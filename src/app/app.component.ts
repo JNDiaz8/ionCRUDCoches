@@ -13,7 +13,7 @@ export class AppComponent {
     {
       title: 'Inicio',
       url: '/home',
-      icon: 'car'
+      icon: 'logo-model-s'
     },
     {
       title: 'Lista',

@@ -31,5 +31,18 @@ export class CochesService {
     return this.db.collection<Coche>(this.coches).add(coche);
   }
 
+  verCoche(id: string) {
+    return this.db.collection(this.coches).doc(id).snapshotChanges();
+  }
+
+  editarCoche(coche: Coche) {
+    return this.db.collection<Coche>(this.coches).doc(id).set(coche);
+  }
+
+  borrarCoche(coche: Coche) {
+    return this.db.collection<Coche>(this.coches).doc(id).delete();
+  }
+
+
 
 }
