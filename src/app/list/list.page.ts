@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CochesService } from '../servicios/coches.service';
-import { Observable } from 'rxjs';
 import { Coche } from '../modelo/coche';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -14,20 +14,21 @@ export class ListPage implements OnInit {
   coches;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private cochesService: CochesService) {}
+
 
   ngOnInit() {
     this.coches = this.cochesService.getCoches();
   }
 
-  verCoche(slidingItem, coche: Coche) {
-    this.cochesService.verCoche(coche);
+  getCoche(slidingItem, coche: Coche) {
+    this.router.navigate(['detalle/', coche.id]);
   }
 
   editarCoche(slidingItem, coche: Coche) {
-    this.cochesService.editarCoche(coche);
-
+    this.router.navigate(['update/', coche.id]);
   }
 
   borrarCoche(slidingItem, coche: Coche) {

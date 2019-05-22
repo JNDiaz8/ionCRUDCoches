@@ -27,20 +27,24 @@ export class CochesService {
     );
   }
 
+  getCoche(id: string) {
+    return this.db.collection(this.coches).doc(id).snapshotChanges();
+  }
+
   altaCoche(coche: Coche) {
     return this.db.collection<Coche>(this.coches).add(coche);
   }
 
-  verCoche(id: string) {
-    return this.db.collection(this.coches).doc(id).snapshotChanges();
-  }
-
-  editarCoche(coche: Coche) {
-    return this.db.collection<Coche>(this.coches).doc(id).set(coche);
+  updateCoche(coche: Coche) {
+    return this.db.collection<Coche>(this.coches).doc(coche.id).set(coche);
   }
 
   borrarCoche(coche: Coche) {
-    return this.db.collection<Coche>(this.coches).doc(id).delete();
+    return this.db.collection<Coche>(this.coches).doc(coche.id).delete().then(
+      () => {
+        console.log('Borrado con exito');
+      }
+    );
   }
 
 

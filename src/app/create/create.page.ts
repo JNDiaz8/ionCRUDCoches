@@ -29,7 +29,7 @@ export class CreatePage implements OnInit {
     };
 
     this.cocheFirestore.altaCoche(nuevoCoche).then(
-      () => this.router.navigate(['coches'])
+      () => this.router.navigate(['list'])
     );
   }
 

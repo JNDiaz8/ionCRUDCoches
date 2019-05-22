@@ -31,16 +31,16 @@
 
      <ion-item-options side="end">
 
-       <ion-item-option color="tertiary">
-          <ion-icon name="eye" (click)="verCoche(slidingItem, coche)"></ion-icon>
+       <ion-item-option color="tertiary" (click)="getCoche(slidingItem, coche)">
+          <ion-icon name="eye"></ion-icon>
        </ion-item-option>
 
-       <ion-item-option color="secondary">
-          <ion-icon name="create" (click)="editarCoche(slidingItem, coche)"></ion-icon>
+       <ion-item-option color="secondary" (click)="editarCoche(slidingItem, coche)">
+          <ion-icon name="create"></ion-icon>
        </ion-item-option>
 
-       <ion-item-option color="danger">
-         <ion-icon name="trash" (click)="borrarCoche(slidingItem, coche)"></ion-icon>
+       <ion-item-option color="danger" (click)="borrarCoche(slidingItem, coche)">
+         <ion-icon name="trash"></ion-icon>
        </ion-item-option>
      </ion-item-options>
 

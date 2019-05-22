@@ -1,5 +1,5 @@
 export class Coche {
-    id?: number;
+    id?: string;
     marca: string;
     modelo: string;
     color: string;
