@@ -1,15 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detalle</ion-title>
+    <ion-title>Detalle</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item *ngIf="coches | async as coche">
-      <ion-label>{{coche.marca}}</ion-label>
-      <ion-label>{{coche.modelo}}</ion-label>
-      <ion-label>{{coche.color}}</ion-label>
-      <ion-label>{{coche.anio}}</ion-label>
-  </ion-item>
+
+  <ion-list>
+
+    <ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Marca: {{coche.marca}}</p>
+            <p>Modelo: {{coche.modelo}}</p>
+            <p>Color: {{coche.color}}</p>
+            <p>Año: {{coche.anio}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-item>
+
+  </ion-list>
+  
   
 </ion-content>

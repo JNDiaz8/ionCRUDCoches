@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { CochesService } from '../servicios/coches.service';
 import { switchMap } from 'rxjs/operators';
+import { Coche } from '../modelo/coche';
+
 
 @Component({
   selector: 'app-detalle',
@@ -10,7 +12,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class DetallePage implements OnInit {
 
-  coches;
+  coches: Coche;
   
   constructor(
     private route: ActivatedRoute,

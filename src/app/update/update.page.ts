@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CochesService } from '../servicios/coches.service';
 import { switchMap } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-update',
   templateUrl: './update.page.html',
@@ -22,9 +23,15 @@ export class UpdatePage implements OnInit {
     this.route.paramMap.pipe(
       switchMap(
         (params: ParamMap) =>
-        this.cocheFirestore.getCoche(params.get('id'))
-      )
-    );
+          this.cocheFirestore.getCoche(params.get('id')))
+      ).subscribe(
+        (coche) => {
+          this.coche.marca;
+          this.coche.modelo;
+          this.coche.color;
+          this.coche.anio;
+        }
+      );
   }
 
   updateCoche() {
@@ -41,6 +48,10 @@ export class UpdatePage implements OnInit {
         this.router.navigate(['list']);
       }
     );
+  }
+
+  volver() {
+    this.router.navigate(['list']);
   }
 
 }
