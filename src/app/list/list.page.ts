@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CochesService } from '../servicios/coches.service';
 import { Coche } from '../modelo/coche';
 import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -11,7 +12,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class ListPage implements OnInit {
 
-  coches;
+  coches: Observable<Coche[]>;
 
   constructor(
     private route: ActivatedRoute,

@@ -12,20 +12,26 @@ import { Coche } from '../modelo/coche';
 })
 export class DetallePage implements OnInit {
 
-  coches: Coche;
-  
+  coche: Coche = {id: null, marca: '', modelo: '', color: '', anio: null};
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private cochesService: CochesService) { }
 
-  ngOnInit() {
-    this.coches = this.route.paramMap.pipe(
-      switchMap(
-        (params: ParamMap) =>
-          this.cochesService.getCoche(params.get('id')))
-      );
-  }
+    ngOnInit() {
+      let id = this.route.snapshot.paramMap.get('id');
+
+      this.cochesService.getCoche(id).subscribe(
+          (coche) => {
+            console.log(coche);
+            this.coche.marca = coche.get('marca');
+            this.coche.modelo = coche.get('modelo');
+            this.coche.color = coche.get('color');
+            this.coche.anio = coche.get('anio');
+          }
+        );
+    }
 
   atras() {
     this.router.navigate(['list']);

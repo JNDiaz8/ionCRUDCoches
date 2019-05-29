@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Coche } from '../modelo/coche';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class CochesService {
 
   constructor(private db: AngularFirestore) {}
 
-  getCoches() {
+  getCoches(): Observable<Coche[]>{
     return this.db.collection<Coche>(this.coches).snapshotChanges().pipe(
       map( coches => {
         return coches.map(
@@ -28,7 +29,7 @@ export class CochesService {
   }
 
   getCoche(id: string) {
-    return this.db.collection(this.coches).doc(id).snapshotChanges();
+    return this.db.collection<Coche>(this.coches).doc(id).get();
   }
 
   altaCoche(coche: Coche) {

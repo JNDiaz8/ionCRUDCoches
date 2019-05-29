@@ -20,16 +20,15 @@ export class UpdatePage implements OnInit {
     private cocheFirestore: CochesService) { }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      switchMap(
-        (params: ParamMap) =>
-          this.cocheFirestore.getCoche(params.get('id')))
-      ).subscribe(
+    let id = this.route.snapshot.paramMap.get('id');
+
+    this.cocheFirestore.getCoche(id).subscribe(
         (coche) => {
-          this.coche.marca;
-          this.coche.modelo;
-          this.coche.color;
-          this.coche.anio;
+          console.log(coche);
+          this.coche.marca = coche.get('marca');
+          this.coche.modelo = coche.get('modelo');
+          this.coche.color = coche.get('color');
+          this.coche.anio = coche.get('anio');
         }
       );
   }
