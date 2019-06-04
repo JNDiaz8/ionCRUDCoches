@@ -14,7 +14,7 @@ export class CochesService {
 
   constructor(private db: AngularFirestore) {}
 
-  getCoches(): Observable<Coche[]>{
+  getCoches(): Observable<Coche[]> {
     return this.db.collection<Coche>(this.coches).snapshotChanges().pipe(
       map( coches => {
         return coches.map(
@@ -37,7 +37,14 @@ export class CochesService {
   }
 
   updateCoche(coche: Coche) {
-    return this.db.collection<Coche>(this.coches).doc(coche.id).set(coche);
+    return this.db.collection<Coche>(this.coches).doc(coche.id).update(coche).then(
+      () => {
+        console.log('Modificado con exito');
+      },
+      () => {
+        console.log('Error al modificar');
+      }
+    );
   }
 
   borrarCoche(coche: Coche) {

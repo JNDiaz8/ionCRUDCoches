@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Coche } from '../modelo/coche';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CochesService } from '../servicios/coches.service';
-import { switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -14,15 +13,17 @@ export class UpdatePage implements OnInit {
 
   coche: Coche = {marca: '', modelo: '', color: '', anio: null};
 
+  id;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private cocheFirestore: CochesService) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
 
-    this.cocheFirestore.getCoche(id).subscribe(
+    this.cocheFirestore.getCoche(this.id).subscribe(
         (coche) => {
           console.log(coche);
           this.coche.marca = coche.get('marca');
@@ -35,6 +36,7 @@ export class UpdatePage implements OnInit {
 
   updateCoche() {
     let modificadoCoche: Coche = {
+      id: this.id,
       marca: this.coche.marca,
       modelo: this.coche.modelo,
       color: this.coche.color,
@@ -43,7 +45,6 @@ export class UpdatePage implements OnInit {
     this.cocheFirestore.updateCoche(modificadoCoche)
     .then(
       () => {
-        console.log('Se han modificado los datos.');
         this.router.navigate(['list']);
       }
     );
